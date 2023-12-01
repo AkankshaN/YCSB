@@ -258,6 +258,7 @@ public class FoundationDBClient extends DB {
             return convTupleToMap(t, op.values.keySet(), new HashMap<>());
           }
         }
+        logger.error("Key Not found");
         return Status.NOT_FOUND;
       });
   }
@@ -294,7 +295,7 @@ public class FoundationDBClient extends DB {
     if (fields != null) {
       for (String field : fields) {
         if (result.get(field) == null) {
-          logger.debug("field not fount: {}", field);
+          logger.error("field not found: {}", field);
           return Status.NOT_FOUND;
         }
       }
